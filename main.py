@@ -12,6 +12,7 @@ WINNING_SCORE = 10
 
 # Screen Setup
 def setup_screen():
+    """Initialize and configure the game screen."""
     screen = Screen()
     screen.bgcolor("black")
     screen.setup(width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
@@ -21,12 +22,14 @@ def setup_screen():
 
 # Paddle Initialization
 def setup_paddles():
+    """Create and return the right and left paddles."""
     r_paddle = Paddle(PADDLE_POSITIONS[0])
     l_paddle = Paddle(PADDLE_POSITIONS[1])
     return r_paddle, l_paddle
 
 # Keybinds
 def setup_keybinds(screen, l_paddle, r_paddle):
+    """Set up keyboard bindings for paddle movement."""
     screen.listen()
     screen.onkey(l_paddle.up, "w")
     screen.onkey(l_paddle.down, "s")
@@ -35,6 +38,7 @@ def setup_keybinds(screen, l_paddle, r_paddle):
 
 # Detect Collisions
 def detect_collisions(ball, r_paddle, l_paddle):
+    """Check for collisions with walls or paddles and handle them."""
     # Detect Collision with Wall
     if ball.ycor() > 280 or ball.ycor() < -280:
         ball.wall_bounce()
@@ -49,6 +53,7 @@ def detect_collisions(ball, r_paddle, l_paddle):
 
 # Detect Scoring
 def detect_scoring(ball, scoreboard):
+    """Check if a player has scored and update the scoreboard."""
     if ball.xcor() > 380:
         ball.reset_pos()
         scoreboard.l_point()
@@ -63,6 +68,7 @@ def detect_scoring(ball, scoreboard):
 
 # Main Game Loop
 def main_game_loop(screen, ball, r_paddle, l_paddle, scoreboard):
+    """Run the main game loop until a player wins."""
     game_is_on = True
     while game_is_on:
         screen.update()
@@ -80,6 +86,7 @@ def main_game_loop(screen, ball, r_paddle, l_paddle, scoreboard):
 
 # Main Function
 def main():
+    """Initialize the game and start the main loop."""
     screen = setup_screen()
     r_paddle, l_paddle = setup_paddles()
     ball = Ball()
