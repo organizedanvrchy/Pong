@@ -1,4 +1,4 @@
-from turtle import Turtle, Screen
+from turtle import Screen
 from paddle import Paddle
 from ball import Ball
 from scoreboard import Scoreboard, ScreenDivider
@@ -8,7 +8,6 @@ import time
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 PADDLE_POSITIONS = [(350, 0), (-350, 0)]
-BALL_SPEED = 0.05
 WINNING_SCORE = 10
 
 # Screen Setup
@@ -67,7 +66,7 @@ def main_game_loop(screen, ball, r_paddle, l_paddle, scoreboard):
     game_is_on = True
     while game_is_on:
         screen.update()
-        time.sleep(BALL_SPEED)
+        time.sleep(ball.move_speed)  # Use the ball's move_speed attribute
         ball.move()
 
         detect_collisions(ball, r_paddle, l_paddle)
